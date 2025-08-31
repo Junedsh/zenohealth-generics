@@ -23,9 +23,14 @@
     }
     header{text-align:center;padding:30px 20px 10px}
     header img{max-width:280px;height:auto}
-    .hero{text-align:center;padding:40px 20px}
+    .hero{text-align:center;padding:50px 20px}
     .hero h1{font-size:2.2rem;margin-bottom:14px;color:var(--accent)}
-    .hero p{font-size:1.1rem;color:var(--muted)}
+    .hero p{font-size:1.1rem;color:var(--muted);margin-bottom:20px}
+    .hero img{max-width:300px;height:auto;margin-top:10px}
+    .fade-in{opacity:0;transform:translateY(20px);animation:fadeInUp 1s ease forwards}
+    @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
+    .float{animation:float 4s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
     section{padding:40px 20px;max-width:960px;margin:0 auto}
     section h2{font-size:1.6rem;margin-bottom:16px;color:var(--accent);text-align:center}
     .card{background:rgba(255,255,255,0.05);padding:20px;border-radius:16px;margin-bottom:20px}
@@ -50,10 +55,11 @@
     <img src="assets/images/logo.png" alt="ZenoHealth Logo">
   </header>
 
-  <!-- Hero with curiosity hook -->
+  <!-- Hero redesigned with illustration and animation -->
   <section class="hero">
-    <h1>Are you paying 2x more for the same medicine?</h1>
-    <p>Generics = Same Medicine • Lower Price • Trusted by Millions</p>
+    <h1 class="fade-in">Are you paying 2x more for the same medicine?</h1>
+    <p class="fade-in" style="animation-delay:0.3s">Generics give you the same trusted quality at a fraction of the cost.</p>
+    <img src="assets/images/illustration.png" alt="Generics Illustration" class="float fade-in" style="animation-delay:0.6s">
   </section>
 
   <!-- What are generics -->
@@ -90,8 +96,8 @@
     <h2>Voices That Matter</h2>
     <div class="videos">
       <iframe src="https://www.youtube.com/embed/t7FmeJCpv6g" title="PM of India on Generics" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/Wjy83yDDGLw" title="Amir Khan on Satyamev Jayate - Generics" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/C9M947-L6Ig" title="Expert Talk on Generics" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/C9M947-L6Ig" title="Amir Khan on Satyamev Jayate - Generics" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/Wjy83yDDGLw" title="Expert Talk on Generics" frameborder="0" allowfullscreen></iframe>
       <iframe src="https://www.youtube.com/embed/o6-UtWI5pLA" title="Another Top Personality on Generics" frameborder="0" allowfullscreen></iframe>
     </div>
   </section>
