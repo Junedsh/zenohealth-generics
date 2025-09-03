@@ -26,43 +26,6 @@
       line-height:1.6;
     }
 
-    /* Hero Section */
-    .hero{
-      text-align:center;
-      padding:50px 20px 30px;
-    }
-    .hero img.logo{
-      max-width:320px;
-      height:auto;
-      margin-bottom:20px;
-    }
-    .hero h1{
-      font-size:2rem;
-      margin-bottom:12px;
-      color:var(--accent);
-    }
-    .hero p{
-      font-size:1.05rem;
-      color:var(--muted);
-      margin-bottom:20px;
-    }
-    .hero img.pic1{
-      max-width:260px;
-      height:auto;
-      margin:0 auto;
-      display:block;
-      animation:float 4s ease-in-out infinite;
-      box-shadow:0 0 25px rgba(255,0,0,0.6); /* red glow */
-      border-radius:12px;
-    }
-
-    /* Floating Animation */
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-
     section{padding:40px 20px;max-width:960px;margin:0 auto}
     section h2{font-size:1.6rem;margin-bottom:16px;color:var(--accent);text-align:center}
     .card{background:rgba(255,255,255,0.05);padding:20px;border-radius:16px;margin-bottom:20px}
@@ -73,67 +36,25 @@
     .myths{display:grid;gap:20px;margin-top:20px}
     .myth{background:rgba(255,255,255,0.05);padding:20px;border-radius:16px}
     .myth strong{color:var(--accent)}
-
-    /* Video Grid with Thumbnails */
-    .video-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:20px;
-      margin-top:20px;
-    }
-    .video-thumb{
-      position:relative;
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow:0 4px 12px rgba(0,0,0,0.4);
-      cursor:pointer;
-    }
-    .video-thumb img{
-      width:100%;
-      display:block;
-    }
-    .play-btn{
-      position:absolute;
-      top:50%; left:50%;
-      transform:translate(-50%,-50%);
-      font-size:48px;
-      color:white;
-      background:rgba(0,0,0,0.5);
-      padding:12px 20px;
-      border-radius:50%;
-    }
-
+    .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:20px}
+    .video-thumb{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.4);cursor:pointer}
+    .video-thumb img{width:100%;display:block}
+    .play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;color:white;background:rgba(0,0,0,0.5);padding:12px 20px;border-radius:50%}
     details{background:rgba(255,255,255,0.05);padding:16px;border-radius:12px;margin:12px 0}
     details summary{cursor:pointer;font-weight:600;color:var(--accent)}
-
     .cta{text-align:center;margin:50px 0}
     .cta a{display:inline-block;margin:8px;background:var(--accent);color:#002b3f;padding:14px 28px;border-radius:30px;font-weight:600;text-decoration:none;font-size:1.05rem}
     footer{text-align:center;font-size:0.85rem;color:var(--muted);padding:30px 20px}
-
-    /* Happy girl above CTA */
-    .happy-girl{
-      text-align:center;
-      margin-top:40px;
-    }
-    .happy-girl img{
-      max-width:260px;
-      height:auto;
-      margin:0 auto;
-      display:block;
-      animation:float 4s ease-in-out infinite;
-      box-shadow:0 0 25px rgba(0,255,0,0.6); /* green glow */
-      border-radius:12px;
-    }
   </style>
 </head>
 <body>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <img src="assets/images/logo.png" alt="ZenoHealth Logo" class="logo">
-    <h1>Are you paying 2x more for the same medicine?</h1>
-    <p>Generics give you the same trusted quality at a fraction of the cost.</p>
-    <img src="assets/images/pic1.png" alt="Branded Medicine Spending" class="pic1">
+  <section class="hero" style="text-align:center;padding:50px 20px 30px;">
+    <img src="assets/images/logo.png" alt="ZenoHealth Logo" class="logo" style="max-width:320px;height:auto;margin-bottom:20px;">
+    <h1 style="color:var(--accent);font-size:2rem;margin-bottom:12px;">Are you paying 2x more for the same medicine?</h1>
+    <p style="color:var(--muted);font-size:1.05rem;margin-bottom:20px;">Generics give you the same trusted quality at a fraction of the cost.</p>
+    <img src="assets/images/pic1.png" alt="Branded Medicine Spending" class="pic1" style="max-width:260px;height:auto;margin:0 auto;display:block;border-radius:12px;box-shadow:0 0 25px rgba(255,0,0,0.6);">
   </section>
 
   <!-- What are generics -->
@@ -144,7 +65,7 @@
     </div>
   </section>
 
-  <!-- Quick stats -->
+  <!-- Stats -->
   <section>
     <h2>Why Customers Trust ZenoHealth</h2>
     <div class="stats">
@@ -155,152 +76,51 @@
     </div>
   </section>
 
-  <!-- Myth vs Truth -->
-  <section>
-    <h2>Myth vs Truth</h2>
-    <div class="myths">
-      <div class="myth"><p><strong>Myth:</strong> Generics are low quality.<br><strong>Truth:</strong> Generics are certified by the same regulators as branded drugs.</p></div>
-      <div class="myth"><p><strong>Myth:</strong> Generics work slower.<br><strong>Truth:</strong> Generics have the same active ingredients and work equally fast.</p></div>
-      <div class="myth"><p><strong>Myth:</strong> Cheaper means unsafe.<br><strong>Truth:</strong> Lower price comes only from reduced marketing costs, not quality.</p></div>
-    </div>
-  </section>
-
-  <!-- Videos about Generics -->
-  <section>
-    <h2>Voices That Matter</h2>
-    <div class="video-grid">
-
-      <a href="https://www.youtube.com/watch?v=t7FmeJCpv6g" class="glightbox" data-type="video" data-source="youtube">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/t7FmeJCpv6g/hqdefault.jpg" alt="PM on Generics">
-          <span class="play-btn">▶</span>
-        </div>
-      </a>
-
-      <a href="https://www.youtube.com/watch?v=Wjy83yDDGLw" class="glightbox" data-type="video" data-source="youtube">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/Wjy83yDDGLw/hqdefault.jpg" alt="Aamir Khan on Generics">
-          <span class="play-btn">▶</span>
-        </div>
-      </a>
-
-      <a href="https://www.youtube.com/watch?v=C9M947-L6Ig" class="glightbox" data-type="video" data-source="youtube">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/C9M947-L6Ig/hqdefault.jpg" alt="Expert Talk on Generics">
-          <span class="play-btn">▶</span>
-        </div>
-      </a>
-
-      <a href="https://www.youtube.com/watch?v=o6-UtWI5pLA" class="glightbox" data-type="video" data-source="youtube">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/o6-UtWI5pLA/hqdefault.jpg" alt="Another Personality on Generics">
-          <span class="play-btn">▶</span>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- Curiosity FAQ -->
-  <section>
-    <h2>Have Questions?</h2>
-    <details>
-      <summary>Why are generics cheaper?</summary>
-      <p>Because they don’t spend money on branding, advertising, and promotions. Quality remains the same.</p>
-    </details>
-    <details>
-      <summary>Are they really safe?</summary>
-      <p>Yes. Every generic medicine goes through strict quality checks by government regulators.</p>
-    </details>
-    <details>
-      <summary>Do doctors recommend them?</summary>
-      <p>Yes. Doctors and pharmacists trust generics worldwide for their effectiveness and affordability.</p>
-    </details>
-    <details>
-      <summary>Do generics look different from branded medicines?</summary>
-      <p>They may differ in color, shape, or packaging, but the active ingredient and effect are exactly the same.</p>
-    </details>
-    <details>
-      <summary>Can I switch from branded to generic?</summary>
-      <p>Yes, you can. Always consult your doctor or pharmacist for guidance on switching.</p>
-    </details>
-    <details>
-      <summary>Are generics available for all medicines?</summary>
-      <p>Most common medicines have generic alternatives. If not, ask your pharmacist for advice.</p>
-    </details>
-  </section>
-
   <!-- Quiz Section -->
-<section id="quiz">
-  <h2>Quick Quiz – Win ₹50 Off!</h2>
-  <form id="quizForm" onsubmit="return false;">
-    <p>1. Generic medicines are usually __% cheaper than branded?</p>
-    <label><input type="radio" name="q1" value="80"> 80%</label>
-    <label><input type="radio" name="q1" value="20"> 20%</label>
+  <section id="quiz">
+    <h2>Quick Quiz – Win ₹50 Off!</h2>
+    <form id="quizForm" onsubmit="return false;">
+      <p>1. Generic medicines are usually __% cheaper than branded?</p>
+      <label><input type="radio" name="q1" value="80"> 80%</label>
+      <label><input type="radio" name="q1" value="20"> 20%</label>
 
-    <p>2. Do generics have the same quality & effectiveness?</p>
-    <label><input type="radio" name="q2" value="Yes"> Yes</label>
-    <label><input type="radio" name="q2" value="No"> No</label>
+      <p>2. Do generics have the same quality & effectiveness?</p>
+      <label><input type="radio" name="q2" value="Yes"> Yes</label>
+      <label><input type="radio" name="q2" value="No"> No</label>
 
-    <p>3. What do you save when you buy generics?</p>
-    <label><input type="radio" name="q3" value="Money"> Money</label>
-    <label><input type="radio" name="q3" value="Time"> Time</label>
+      <p>3. What do you save when you buy generics?</p>
+      <label><input type="radio" name="q3" value="Money"> Money</label>
+      <label><input type="radio" name="q3" value="Time"> Time</label>
 
-    <p>4. Which store gives you authentic generics?</p>
-    <label><input type="radio" name="q4" value="ZenoHealth"> ZenoHealth</label>
-    <label><input type="radio" name="q4" value="Others"> Others</label>
+      <p>4. Which store gives you authentic generics?</p>
+      <label><input type="radio" name="q4" value="ZenoHealth"> ZenoHealth</label>
+      <label><input type="radio" name="q4" value="Others"> Others</label>
 
-    <button type="submit">Submit Answers</button>
-  </form>
-
-  <div id="quizResult" style="margin-top:20px; display:none;"></div>
-</section>
-
-
-  
-  <!-- Happy girl image before CTA -->
-  <section class="happy-girl">
-    <img src="assets/images/pic2.png" alt="Happy after Generics">
+      <button id="quizSubmitBtn" type="button">Submit Answers</button>
+    </form>
+    <div id="quizResult" style="margin-top:20px; display:none;"></div>
   </section>
-  
-  
+
   <!-- CTA -->
   <section class="cta">
     <a href="https://web.zeno.health/corporate/store-locator" target="_blank">Visit Your Nearest Store</a>
     <a href="https://wa.me/919876543210?text=Hello%20ZenoHealth%20Pharmacist%2C%20I%20have%20a%20question%20about%20generics" target="_blank">Talk to Our Pharmacist</a>
   </section>
 
-  
-
   <footer>
     © 2025 ZenoHealth • Your Partner in Affordable Care
   </footer>
-<!-- GLightbox JS -->
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-<script>
-  // === Video Lightbox ===
-  const lightbox = GLightbox({
-    selector: '.glightbox',
-    touchNavigation: true,
-    autoplayVideos: true,
-    plyr: {
-      config: {
-        youtube: { modestbranding: 1, rel: 0 }
-      }
-    }
-  });
 
-  // === Quiz + Coupon Logic ===
-  const quizForm = document.getElementById("quizForm");
-  const quizResult = document.getElementById("quizResult");
+  <!-- GLightbox JS -->
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    const lightbox = GLightbox({selector: '.glightbox', touchNavigation: true, autoplayVideos: true});
 
-  // Replace with your deployed Apps Script Web App URL
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzAAYF2mN9YH26gfITaDFyAYE4haHfxO3ffWyPaZwENDMGXgE15ZP9or2mVmip665uR/exec";
+    const quizResult = document.getElementById("quizResult");
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzAAYF2mN9YH26gfITaDFyAYE4haHfxO3ffWyPaZwENDMGXgE15ZP9or2mVmip665uR/exec";
 
-  if (quizForm) {
-    quizForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-
+    document.getElementById("quizSubmitBtn").addEventListener("click", function() {
+      const quizForm = document.getElementById("quizForm");
       const answers = {
         q1: quizForm.q1.value,
         q2: quizForm.q2.value,
@@ -308,30 +128,27 @@
         q4: quizForm.q4.value
       };
 
-      // Correct Answers
       if (answers.q1 === "80" && answers.q2 === "Yes" && answers.q3 === "Money" && answers.q4 === "ZenoHealth") {
         quizResult.innerHTML = `
           <p>🎉 Congratulations! You answered all correctly.</p>
           <p>Please enter your mobile number:</p>
           <input type="tel" id="mobileInput" placeholder="Enter 10-digit mobile">
-          <button id="getCouponBtn">Get My Coupon</button>
+          <button id="getCouponBtn" type="button">Get My Coupon</button>
         `;
         quizResult.style.display = "block";
 
         document.getElementById("getCouponBtn").addEventListener("click", () => {
           const mobile = document.getElementById("mobileInput").value.trim();
-
-          // Validate mobile (Indian format: starts with 6-9, 10 digits)
           if (!/^[6-9][0-9]{9}$/.test(mobile)) {
             alert("Please enter a valid 10-digit mobile number.");
             return;
           }
 
-          // Capture Store from UTM
           const urlParams = new URLSearchParams(window.location.search);
           const store = urlParams.get("utm_source") || "NA";
 
-          // Send to Google Apps Script
+          quizResult.innerHTML = "<p>⏳ Generating your coupon...</p>";
+
           fetch(SCRIPT_URL, {
             method: "POST",
             body: JSON.stringify({ mobile: mobile, store: store }),
@@ -339,12 +156,10 @@
           })
           .then(res => res.json())
           .then(data => {
-                      quizResult.innerHTML = `
-            <p>🎉 Congratulations! You answered all correctly.</p>
-            <p>Please enter your mobile number:</p>
-            <input type="tel" id="mobileInput" placeholder="Enter 10-digit mobile">
-            <button id="getCouponBtn" type="button">Get My Coupon</button>
-          `;
+            quizResult.innerHTML = `
+              <p>✅ Your personalized coupon code: <strong>${data.coupon}</strong></p>
+              <p>Show this at the counter to get ₹50 off on bill ₹249+.</p>
+            `;
           })
           .catch(err => {
             console.error(err);
@@ -356,8 +171,6 @@
         quizResult.style.display = "block";
       }
     });
-  }
-</script>
-  
+  </script>
 </body>
 </html>
