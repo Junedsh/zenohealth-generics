@@ -1,3 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Test</title>
+</head>
+<body>
+
+<section id="quiz">
+  <h2>Quick Quiz – Win ₹50 Off!</h2>
+  <form id="quizForm" onsubmit="return false;">
+    <p>1. Generic medicines are usually __% cheaper than branded?</p>
+    <label><input type="radio" name="q1" value="80"> 80%</label>
+    <label><input type="radio" name="q1" value="20"> 20%</label>
+
+    <p>2. Do generics have the same quality & effectiveness?</p>
+    <label><input type="radio" name="q2" value="Yes"> Yes</label>
+    <label><input type="radio" name="q2" value="No"> No</label>
+
+    <p>3. What do you save when you buy generics?</p>
+    <label><input type="radio" name="q3" value="Money"> Money</label>
+    <label><input type="radio" name="q3" value="Time"> Time</label>
+
+    <p>4. Which store gives you authentic generics?</p>
+    <label><input type="radio" name="q4" value="ZenoHealth"> ZenoHealth</label>
+    <label><input type="radio" name="q4" value="Others"> Others</label>
+
+    <button id="quizSubmitBtn" type="button">Submit Answers</button>
+  </form>
+
+  <div id="quizResult" style="margin-top:20px; display:none;"></div>
+</section>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const quizSubmitBtn = document.getElementById("quizSubmitBtn");
@@ -22,21 +56,17 @@ document.addEventListener("DOMContentLoaded", function() {
       `;
       quizResult.style.display = "block";
 
-      // Add the new event listener for the "Get My Coupon" button here
       const getCouponBtn = document.getElementById("getCouponBtn");
       getCouponBtn.addEventListener("click", function() {
         const mobileInput = document.getElementById("mobileInput");
         const mobileNumber = mobileInput.value;
 
-        // The URL of your deployed Google App Script
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwUl0SDKOtX72u8ZkIUuswCtns4YkURKWdWE29RFGryfqzGSRESW3qJfRXoBErkGyaewg/exec';
 
-        // Check if the mobile number is valid (optional, but good practice)
         if (mobileNumber.length === 10 && !isNaN(mobileNumber)) {
           fetch(`${scriptURL}?mobile=${mobileNumber}`)
             .then(response => response.json())
             .then(data => {
-              // Display the result from the App Script
               if (data.status === 'success') {
                 quizResult.innerHTML = `<p>✅ Coupon sent to your number: ${mobileNumber}</p>`;
               } else {
@@ -59,3 +89,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
+
+</body>
+</html>
