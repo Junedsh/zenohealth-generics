@@ -230,34 +230,131 @@
     </details>
   </section>
 
+  <!-- Quiz Section -->
+<section id="quiz">
+  <h2>Quick Quiz – Win ₹50 Off!</h2>
+  <form id="quizForm">
+    <p>1. Generic medicines are usually __% cheaper than branded?</p>
+    <label><input type="radio" name="q1" value="80"> 80%</label>
+    <label><input type="radio" name="q1" value="20"> 20%</label>
+
+    <p>2. Do generics have the same quality & effectiveness?</p>
+    <label><input type="radio" name="q2" value="Yes"> Yes</label>
+    <label><input type="radio" name="q2" value="No"> No</label>
+
+    <p>3. What do you save when you buy generics?</p>
+    <label><input type="radio" name="q3" value="Money"> Money</label>
+    <label><input type="radio" name="q3" value="Time"> Time</label>
+
+    <p>4. Which store gives you authentic generics?</p>
+    <label><input type="radio" name="q4" value="ZenoHealth"> ZenoHealth</label>
+    <label><input type="radio" name="q4" value="Others"> Others</label>
+
+    <button type="submit">Submit Answers</button>
+  </form>
+
+  <div id="quizResult" style="margin-top:20px; display:none;"></div>
+</section>
+
+  
   <!-- Happy girl image before CTA -->
   <section class="happy-girl">
     <img src="assets/images/pic2.png" alt="Happy after Generics">
   </section>
-
+  
+  
   <!-- CTA -->
   <section class="cta">
     <a href="https://web.zeno.health/corporate/store-locator" target="_blank">Visit Your Nearest Store</a>
     <a href="https://wa.me/919876543210?text=Hello%20ZenoHealth%20Pharmacist%2C%20I%20have%20a%20question%20about%20generics" target="_blank">Talk to Our Pharmacist</a>
   </section>
 
+  
+
   <footer>
     © 2025 ZenoHealth • Your Partner in Affordable Care
   </footer>
+<!-- GLightbox JS -->
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+  // === Video Lightbox ===
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    autoplayVideos: true,
+    plyr: {
+      config: {
+        youtube: { modestbranding: 1, rel: 0 }
+      }
+    }
+  });
 
-  <!-- GLightbox JS -->
-  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-  <script>
-    const lightbox = GLightbox({
-      selector: '.glightbox',
-      touchNavigation: true,
-      autoplayVideos: true,
-      plyr: {
-        config: {
-          youtube: { modestbranding: 1, rel: 0 }
-        }
+  // === Quiz + Coupon Logic ===
+  const quizForm = document.getElementById("quizForm");
+  const quizResult = document.getElementById("quizResult");
+
+  // Replace with your deployed Apps Script Web App URL
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzAAYF2mN9YH26gfITaDFyAYE4haHfxO3ffWyPaZwENDMGXgE15ZP9or2mVmip665uR/exec";
+
+  if (quizForm) {
+    quizForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const answers = {
+        q1: quizForm.q1.value,
+        q2: quizForm.q2.value,
+        q3: quizForm.q3.value,
+        q4: quizForm.q4.value
+      };
+
+      // Correct Answers
+      if (answers.q1 === "80" && answers.q2 === "Yes" && answers.q3 === "Money" && answers.q4 === "ZenoHealth") {
+        quizResult.innerHTML = `
+          <p>🎉 Congratulations! You answered all correctly.</p>
+          <p>Please enter your mobile number:</p>
+          <input type="tel" id="mobileInput" placeholder="Enter 10-digit mobile">
+          <button id="getCouponBtn">Get My Coupon</button>
+        `;
+        quizResult.style.display = "block";
+
+        document.getElementById("getCouponBtn").addEventListener("click", () => {
+          const mobile = document.getElementById("mobileInput").value.trim();
+
+          // Validate mobile (Indian format: starts with 6-9, 10 digits)
+          if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+            alert("Please enter a valid 10-digit mobile number.");
+            return;
+          }
+
+          // Capture Store from UTM
+          const urlParams = new URLSearchParams(window.location.search);
+          const store = urlParams.get("utm_source") || "NA";
+
+          // Send to Google Apps Script
+          fetch(SCRIPT_URL, {
+            method: "POST",
+            body: JSON.stringify({ mobile: mobile, store: store }),
+            headers: { "Content-Type": "application/json" }
+          })
+          .then(res => res.json())
+          .then(data => {
+            quizResult.innerHTML = `
+              <p>✅ Your personalized coupon code: <strong>${data.coupon}</strong></p>
+              <p>Show this at the counter to get ₹50 off on bill ₹249+.</p>
+            `;
+          })
+          .catch(err => {
+            console.error(err);
+            alert("⚠️ Something went wrong. Please try again.");
+          });
+        });
+      } else {
+        quizResult.innerHTML = `<p>❌ Oops! Some answers are wrong. Try again.</p>`;
+        quizResult.style.display = "block";
       }
     });
-  </script>
+  }
+</script>
+  
 </body>
 </html>
