@@ -453,53 +453,54 @@
                     }
 
                     // Check correct answers
-                    if (
-                          answers.q1 === "correct" &&
-                          answers.q2 === "correct" &&
-                          answers.q3 === "correct" &&
-                          answers.q4 === "correct"
-                        ) {
-                        quizResult.innerHTML = `
-                            <p>🎉 Congratulations! You answered all correctly.</p>
-                            <p>Please enter your mobile number:</p>
-                            <input type="tel" id="mobileInput" placeholder="Enter 10-digit mobile">
-                            <button id="getCouponBtn" type="button">Get My Coupon</button>
-                        `;
-                        quizResult.style.display = "block";
+if (
+  q1Value === "correct" &&
+  q2Value === "correct" &&
+  q3Value === "correct" &&
+  q4Value === "correct"
+) {
+    quizResult.innerHTML = `
+        <p>🎉 Congratulations! You answered all correctly.</p>
+        <p>Please enter your mobile number:</p>
+        <input type="tel" id="mobileInput" placeholder="Enter 10-digit mobile">
+        <button id="getCouponBtn" type="button">Get My Coupon</button>
+    `;
+    quizResult.style.display = "block";
 
-                        document.getElementById("getCouponBtn").addEventListener("click", () => {
-                            const mobile = document.getElementById("mobileInput").value.trim();
-                            if (!/^[6-9][0-9]{9}$/.test(mobile)) {
-                                alert("Please enter a valid 10-digit mobile number.");
-                                return;
-                            }
+    document.getElementById("getCouponBtn").addEventListener("click", () => {
+        const mobile = document.getElementById("mobileInput").value.trim();
+        if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+            alert("Please enter a valid 10-digit mobile number.");
+            return;
+        }
 
-                            const urlParams = new URLSearchParams(window.location.search);
-                            const store = urlParams.get("utm_source") || "NA";
+        const urlParams = new URLSearchParams(window.location.search);
+        const store = urlParams.get("utm_source") || "NA";
 
-                            quizResult.innerHTML = "<p>⏳ Generating your coupon...</p>";
+        quizResult.innerHTML = "<p>⏳ Generating your coupon...</p>";
 
-                            fetch(`${SCRIPT_URL}?mobile=${mobile}&store=${store}`)
-                                .then(res => res.json())
-                                .then(data => {
-                                    if (data.status === "success") {
-                                        quizResult.innerHTML = `
-                                            <p>✅ Your personalized coupon code: <strong>${data.coupon}</strong></p>
-                                            <p>Show this at the counter to get ₹50 off on bill ₹249+.</p>
-                                        `;
-                                    } else {
-                                        quizResult.innerHTML = `<p>⚠️ Error: ${data.message}</p>`;
-                                    }
-                                })
-                                .catch(err => {
-                                    console.error(err);
-                                    alert("⚠️ Something went wrong. Please try again.");
-                                });
-                        });
-                    } else {
-                        quizResult.innerHTML = `<p>❌ Oops! Some answers are wrong. Try again.</p>`;
-                        quizResult.style.display = "block";
-                    }
+        fetch(`${SCRIPT_URL}?mobile=${mobile}&store=${store}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "success") {
+                    quizResult.innerHTML = `
+                        <p>✅ Your personalized coupon code: <strong>${data.coupon}</strong></p>
+                        <p>Show this at the counter to get ₹50 off on bill ₹249+.</p>
+                    `;
+                } else {
+                    quizResult.innerHTML = `<p>⚠️ Error: ${data.message}</p>`;
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("⚠️ Something went wrong. Please try again.");
+            });
+    });
+} else {
+    quizResult.innerHTML = `<p>❌ Oops! Some answers are wrong. Try again.</p>`;
+    quizResult.style.display = "block";
+}
+
                 });
             }
         });
