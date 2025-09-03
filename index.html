@@ -112,14 +112,23 @@
   </footer>
 
   <!-- GLightbox JS -->
-  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-  <script>
-    const lightbox = GLightbox({selector: '.glightbox', touchNavigation: true, autoplayVideos: true});
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // === Video Lightbox ===
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    autoplayVideos: true,
+    plyr: { config: { youtube: { modestbranding: 1, rel: 0 } } }
+  });
 
-    const quizResult = document.getElementById("quizResult");
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzAAYF2mN9YH26gfITaDFyAYE4haHfxO3ffWyPaZwENDMGXgE15ZP9or2mVmip665uR/exec";
+  const quizResult = document.getElementById("quizResult");
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzAAYF2mN9YH26gfITaDFyAYE4haHfxO3ffWyPaZwENDMGXgE15ZP9or2mVmip665uR/exec";
 
-    document.getElementById("quizSubmitBtn").addEventListener("click", function() {
+  const quizSubmitBtn = document.getElementById("quizSubmitBtn");
+  if (quizSubmitBtn) {
+    quizSubmitBtn.addEventListener("click", function() {
       const quizForm = document.getElementById("quizForm");
       const answers = {
         q1: quizForm.q1.value,
@@ -128,6 +137,7 @@
         q4: quizForm.q4.value
       };
 
+      // Check correct answers
       if (answers.q1 === "80" && answers.q2 === "Yes" && answers.q3 === "Money" && answers.q4 === "ZenoHealth") {
         quizResult.innerHTML = `
           <p>🎉 Congratulations! You answered all correctly.</p>
@@ -171,6 +181,9 @@
         quizResult.style.display = "block";
       }
     });
-  </script>
+  }
+});
+</script>
+
 </body>
 </html>
