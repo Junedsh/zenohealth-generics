@@ -159,17 +159,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
           quizResult.innerHTML = "<p>⏳ Generating your coupon...</p>";
 
-          fetch(SCRIPT_URL, {
-            method: "POST",
-            body: JSON.stringify({ mobile: mobile, store: store }),
-            headers: { "Content-Type": "application/json" }
-          })
+          // Use GET like in test.html
+          fetch(`${SCRIPT_URL}?mobile=${mobile}&store=${store}`)
           .then(res => res.json())
           .then(data => {
-            quizResult.innerHTML = `
-              <p>✅ Your personalized coupon code: <strong>${data.coupon}</strong></p>
-              <p>Show this at the counter to get ₹50 off on bill ₹249+.</p>
-            `;
+            if (data.status === "success") {
+              quizResult.innerHTML = `
+                <p>✅ Your personalized coupon code: <strong>${data.coupon}</strong></p>
+                <p>Show this at the counter to get ₹50 off on bill ₹249+.</p>
+              `;
+            } else {
+              quizResult.innerHTML = `<p>⚠️ Error: ${data.message}</p>`;
+            }
           })
           .catch(err => {
             console.error(err);
