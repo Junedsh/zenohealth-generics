@@ -453,7 +453,12 @@
                     }
 
                     // Check correct answers
-                    if (q1Value === "80" && q2Value === "Yes" && q3Value === "Money" && q4Value === "ZenoHealth") {
+                    if (
+                          answers.q1 === "correct" &&
+                          answers.q2 === "correct" &&
+                          answers.q3 === "correct" &&
+                          answers.q4 === "correct"
+                        ) {
                         quizResult.innerHTML = `
                             <p>🎉 Congratulations! You answered all correctly.</p>
                             <p>Please enter your mobile number:</p>
